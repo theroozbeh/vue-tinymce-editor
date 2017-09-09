@@ -1,4 +1,4 @@
-import PDatePicker from './components/TinymceVue'
+import tinymce from './components/TinymceVue'
 
 export default tinymce
 export { tinymce }

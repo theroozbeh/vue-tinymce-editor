@@ -1,6 +1,6 @@
 <template>
   <div>
-      <textarea>{{ content }}</textarea>
+      <textarea :id="id">{{ content }}</textarea>
   </div>
 </template>
 
@@ -13,12 +13,14 @@
 
     // Any plugins you want to use has to be imported
     import 'tinymce/plugins/advlist';
+    import 'tinymce/plugins/wordcount';
     import 'tinymce/plugins/autolink';
     import 'tinymce/plugins/autosave';
     import 'tinymce/plugins/charmap';
     import 'tinymce/plugins/codesample';
     import 'tinymce/plugins/contextmenu';
     import 'tinymce/plugins/emoticons';
+    import 'tinymce/plugins/codesample';
     import 'tinymce/plugins/fullscreen';
     import 'tinymce/plugins/hr';
     import 'tinymce/plugins/imagetools';
@@ -61,43 +63,53 @@
     export default {
         name: 'tinymce',
         props: { 
+                'id' : {
+                    type : String,
+                    required : true
+                },
                 'htmlClass' : { default : '', type : String},
                 'value' : { default : '' },
-                'plugins' : { default : [
-                                    'advlist autolink lists link image charmap print preview hr anchor pagebreak a11ychecker',
-                                    'searchreplace wordcount visualblocks visualchars code fullscreen tinymcespellchecker advcode',
-                                    'insertdatetime media nonbreaking save table contextmenu directionality',
-                                    'template paste textcolor colorpicker textpattern imagetools codesample toc help emoticons hr'
-                                ] , type: Array
-                            }
-                            ,
+                'plugins' : { default : function(){ 
+                                    return [
+                                        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                                        'searchreplace wordcount visualblocks visualchars code fullscreen',
+                                        'insertdatetime media nonbreaking save table contextmenu directionality',
+                                        'template paste textcolor colorpicker textpattern imagetools toc help emoticons hr'
+                                    ];
+                                } , type: Array
+                            },
                 toolbar1: { default :'formatselect | bold italic  strikethrough  forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat', type: String},
                 toolbar2: { default : '', type: String },
-                other_options: { default : [], type: Array}
+                other_options: { default : function() { return []; }, type: Array}
         },
         data(){
             return {
-                content : ''
-            }  
+                content : '',
+                editor : null
+            }; 
         },
         mounted(){
             this.content = this.value;
             this.init();  
         },
+        beforeDestroy () {
+            this.editor.destroy();
+        },
         methods: {
             init(){
                 let options = {
-                    selector: 'textarea',
+                    selector: '#' + this.id,
+                    skin: false,
                     toolbar1: this.toolbar1,
                     toolbar2: this.toolbar2,
                     plugins: this.plugins,
                     init_instance_callback : (editor) => {
+                        this.editor = editor;
                         editor.on('NodeChange Change KeyUp', (e) => {
-                            this.$emit('input', editor.getContent());
-                            this.$emit('change', editor, tinymce.activeEditor.getContent());
+                           this.$emit('input', this.editor.getContent());
                         });
                         editor.on('init', (e) => {
-                            if(this.content != undefined) editor.setContent(this.content);
+                            editor.setContent(this.content);
                             this.$emit('input', this.content);
                         });
                     }

@@ -1,18 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <tinymcetest></tinymcetest>
   </div>
 </template>
 
 <script>
-    import tinymce from "vue-tinymce-editor"
-    import Hello from './components/Hello'
+    import tinymcetest from './components/TinymceTest'
 
     export default {
       name: 'app',
       components: {
-        Hello
+        tinymcetest
       }
     }
 </script>

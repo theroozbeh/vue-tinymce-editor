@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <tinymce v-model="data"></tinymce>
+    <tinymce id="d1" v-model="data"></tinymce>
     <div>{{ data }}</div>
   </div>
 </template>
