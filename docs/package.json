@@ -1,18 +1,17 @@
 {
-  "name": "vue-tinymce-editor",
-  "version": "1.0.3",
-  "description": "This a component provides use of tinymce for vue developers",
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "Test project for vue-tinymce-editor",
   "author": "Roozbeh Hajizadeh <hajizadeh.roozbeh@gmail.com>",
-  "private": false,
-  "main": "./src/index.js",
+  "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js"
   },
   "dependencies": {
-    "tinymce": "^4.6.6",
-    "vue": "^2.4.2"
+    "vue": "^2.4.2",
+    "vue-tinymce-editor": "^1.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
