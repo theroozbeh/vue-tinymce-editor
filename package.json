@@ -50,10 +50,21 @@
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0"
   },
+  "keywords": [
+    "vue",
+    "tinymce",
+    "editor"
+  ],
+  "homepage": "https://github.com/dyonir/vue-tinymce-editor/#readme",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/dyonir/vue-tinymce-editor.git"
+  },
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
   },
+  "license": "MIT",
   "browserslist": [
     "> 1%",
     "last 2 versions",
