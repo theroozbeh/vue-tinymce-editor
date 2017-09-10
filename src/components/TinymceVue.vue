@@ -80,7 +80,7 @@
                             },
                 toolbar1: { default :'formatselect | bold italic  strikethrough  forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat', type: String},
                 toolbar2: { default : '', type: String },
-                other_options: { default : function() { return []; }, type: Array}
+                other_options: { default : function() { return []; }, type: Object}
         },
         data(){
             return {
