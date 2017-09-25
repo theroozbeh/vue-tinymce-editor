@@ -86,7 +86,9 @@
             return {
                 content : '',
                 editor : null,
-                cTinyMce : null
+                cTinyMce : null,
+                checkerTimeout: null,
+                isTyping : false
             }; 
         },
         mounted(){
@@ -98,7 +100,11 @@
         },
         watch: {
             value : function (newValue){
-                tinymce.get(this.id).setContent(newValue);
+                console.log('b ' +this.isTyping);
+                if(!this.isTyping){
+                    console.log('hi');
+                    this.editor.setContent(newValue);
+                }
             }
         },
         methods: {
@@ -111,8 +117,13 @@
                     plugins: this.plugins,
                     init_instance_callback : (editor) => {
                         this.editor = editor;
-                        editor.on('NodeChange Change KeyUp', (e) => {
-                           this.$emit('input', this.editor.getContent());
+                        editor.on('KeyUp', (e) => {
+                           this.submitNewContent();
+                        });
+                        editor.on('Change', (e) => {
+                            if(this.editor.getContent() !== this.value){
+                               this.submitNewContent();
+                            }
                         });
                         editor.on('init', (e) => {
                             editor.setContent(this.content);
@@ -129,6 +140,21 @@
                 for ( let key in array1) dest[key] = array1[key];
                 for ( let key in array2) dest[key] = array2[key];
                 return dest;
+            },
+            submitNewContent(){
+                console.log('submit');
+                
+                this.isTyping = true;
+                if(this.checkerTimeout !== null)
+                     clearTimeout(this.checkerTimeout);
+                 this.checkerTimeout = setTimeout(()=>{
+                     console.log('from t ' + this.isTyping);
+                     this.isTyping = false;
+                     console.log('from t ' + this.isTyping);
+                 }, 300);
+
+                this.$emit('input', this.editor.getContent());
+                
             }
         }
     }

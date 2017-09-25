@@ -11,6 +11,7 @@ Vue.config.productionTip = false
 import tinymce from "../../src/components/TinymceVue"
 //import tinymce from "vue-tinymce-editor"
 Vue.component('tinymce', tinymce);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -56,7 +56,7 @@
     "editor"
   ],
   "homepage": "https://github.com/dyonir/vue-tinymce-editor/#readme",
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/dyonir/vue-tinymce-editor.git"
   },
