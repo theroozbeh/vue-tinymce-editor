@@ -2,6 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <tinymce id="d1" v-model="data"></tinymce>
+    <button type="button" @click="clickHandler">Reset</button>
     <div>{{ data }}</div>
   </div>
 </template>
@@ -18,7 +19,11 @@ export default {
       return {
           data : 'Hello from tinymce'
       };
-      
+  },
+  methods:{
+      clickHandler(){
+          this.data = 'You reseted tinymce\'c content';
+      }
   }
 }
 </script>
