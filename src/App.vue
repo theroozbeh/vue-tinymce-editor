@@ -22,7 +22,7 @@ export default {
   },
   methods:{
       clickHandler(){
-          this.data = 'You reseted tinymce\'c content';
+          this.data = 'You reseted tinymce\'s content';
       }
   }
 }

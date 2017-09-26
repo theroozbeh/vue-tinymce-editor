@@ -30,8 +30,8 @@
 export default {
   data () {
     return {
-      dt1 : '<h2>This is a component for easy use og tinymce in vuejs.</h2> <p>&nbsp;</p> <p><span style="color: #339966;">I hope you enjoy using.</span></p>',
-      initial : '<h2>This is a component for easy use og tinymce in vuejs.</h2> <p>&nbsp;</p> <p><span style="color: #339966;">I hope you enjoy using.</span></p>',
+      dt1 : '<h2>This is a component for easy use of tinymce in vuejs.</h2> <p>&nbsp;</p> <p><span style="color: #339966;">I hope you enjoy using it.</span></p>',
+      initial : '<h2>This is a component for easy use of tinymce in vuejs.</h2> <p>&nbsp;</p> <p><span style="color: #339966;">I hope you enjoy using it.</span></p>',
       options1:  { 'height': 300 }
     }
   },
