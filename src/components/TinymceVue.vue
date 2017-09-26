@@ -100,9 +100,7 @@
         },
         watch: {
             value : function (newValue){
-                console.log('b ' +this.isTyping);
                 if(!this.isTyping){
-                    console.log('hi');
                     this.editor.setContent(newValue);
                 }
             }
@@ -142,19 +140,14 @@
                 return dest;
             },
             submitNewContent(){
-                console.log('submit');
-                
                 this.isTyping = true;
                 if(this.checkerTimeout !== null)
                      clearTimeout(this.checkerTimeout);
                  this.checkerTimeout = setTimeout(()=>{
-                     console.log('from t ' + this.isTyping);
                      this.isTyping = false;
-                     console.log('from t ' + this.isTyping);
                  }, 300);
 
                 this.$emit('input', this.editor.getContent());
-                
             }
         }
     }
