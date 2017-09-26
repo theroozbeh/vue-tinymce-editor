@@ -101,7 +101,10 @@
         watch: {
             value : function (newValue){
                 if(!this.isTyping){
-                    this.editor.setContent(newValue);
+                    if(this.editor !== null)
+                        this.editor.setContent(newValue);
+                    else
+                        this.content = newValue;
                 }
             }
         },
@@ -142,10 +145,10 @@
             submitNewContent(){
                 this.isTyping = true;
                 if(this.checkerTimeout !== null)
-                     clearTimeout(this.checkerTimeout);
-                 this.checkerTimeout = setTimeout(()=>{
-                     this.isTyping = false;
-                 }, 300);
+                    clearTimeout(this.checkerTimeout);
+                    this.checkerTimeout = setTimeout(()=>{
+                        this.isTyping = false;
+                    }, 300);
 
                 this.$emit('input', this.editor.getContent());
             }

@@ -17,10 +17,13 @@ export default {
   },
   data(){
       return {
-          data : 'Hello from tinymce'
+          data : '<p>Hello from tinymce</p>'
       };
   },
-  methods:{
+  mounted(){
+     
+  },
+  methods: {
       clickHandler(){
           this.data = 'You reseted tinymce\'s content';
       }
