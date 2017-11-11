@@ -110,29 +110,33 @@
         },
         methods: {
             init(){
-                let options = {
+                let options = Object.assign({
                     selector: '#' + this.id,
                     skin: false,
                     toolbar1: this.toolbar1,
                     toolbar2: this.toolbar2,
                     plugins: this.plugins,
+                  },
+                  this.other_options, 
+                  {
                     init_instance_callback : (editor) => {
-                        this.editor = editor;
-                        editor.on('KeyUp', (e) => {
-                           this.submitNewContent();
-                        });
-                        editor.on('Change', (e) => {
-                            if(this.editor.getContent() !== this.value){
-                               this.submitNewContent();
-                            }
-                        });
-                        editor.on('init', (e) => {
-                            editor.setContent(this.content);
-                            this.$emit('input', this.content);
-                        });
+                      this.editor = editor;
+                      editor.on('KeyUp', (e) => {
+                         this.submitNewContent();
+                      });
+                      editor.on('Change', (e) => {
+                          if(this.editor.getContent() !== this.value){
+                             this.submitNewContent();
+                          }
+                      });
+                      editor.on('init', (e) => {
+                          editor.setContent(this.content);
+                          this.$emit('input', this.content);
+                      });
+                      this.$emit('init', editor);
                     }
-                };
-                tinymce.init(this.concatAssciativeArrays(options, this.other_options));
+                });
+                tinymce.init(options);
             },
             concatAssciativeArrays(array1, array2){
                 if(array2.length === 0) return array1;
