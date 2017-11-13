@@ -164,7 +164,7 @@
                           editor.setContent(this.content);
                           this.$emit('input', this.content);
                       });
-                      this.$emit('init', editor);
+                      this.$emit('init_instance', editor);
                     }
                 });
                 tinymce.init(options);
