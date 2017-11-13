@@ -59,6 +59,37 @@
     
     import 'tinymce/skins/lightgray/skin.min.css'
     import 'tinymce/skins/lightgray/content.min.css'
+    
+    // Object.assign polyfill
+    if (typeof Object.assign != 'function') {
+      // Must be writable: true, enumerable: false, configurable: true
+      Object.defineProperty(Object, "assign", {
+        value: function assign(target, varArgs) { // .length of function is 2
+          'use strict';
+          if (target == null) { // TypeError if undefined or null
+            throw new TypeError('Cannot convert undefined or null to object');
+          }
+
+          var to = Object(target);
+
+          for (var index = 1; index < arguments.length; index++) {
+            var nextSource = arguments[index];
+
+            if (nextSource != null) { // Skip over if undefined or null
+              for (var nextKey in nextSource) {
+                // Avoid bugs when hasOwnProperty is shadowed
+                if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                  to[nextKey] = nextSource[nextKey];
+                }
+              }
+            }
+          }
+          return to;
+        },
+        writable: true,
+        configurable: true
+      });
+    }
    
     export default {
         name: 'tinymce',
@@ -138,14 +169,6 @@
                 });
                 tinymce.init(options);
             },
-            concatAssciativeArrays(array1, array2){
-                if(array2.length === 0) return array1;
-                if(array1.length === 0) return array2;
-                let dest = [];
-                for ( let key in array1) dest[key] = array1[key];
-                for ( let key in array2) dest[key] = array2[key];
-                return dest;
-            },
             submitNewContent(){
                 this.isTyping = true;
                 if(this.checkerTimeout !== null)
@@ -159,8 +182,3 @@
         }
     }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
