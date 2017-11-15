@@ -127,7 +127,11 @@
             this.init();  
         },
         beforeDestroy () {
-            this.editor.destroy();
+            if (this.editor) {
+                this.editor.destroy();
+                // tinymce.execCommand("mceRemoveEditor", false, this.id);
+                // this.editor = null;
+            }
         },
         watch: {
             value : function (newValue){
