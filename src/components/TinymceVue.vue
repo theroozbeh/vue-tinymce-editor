@@ -128,9 +128,9 @@
         },
         beforeDestroy () {
             if (this.editor) {
-                this.editor.destroy();
-                // tinymce.execCommand("mceRemoveEditor", false, this.id);
-                // this.editor = null;
+                // this.editor.destroy();
+                tinymce.execCommand("mceRemoveEditor", false, this.id);
+                this.editor = null;
             }
         },
         watch: {
