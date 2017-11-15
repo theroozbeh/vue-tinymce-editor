@@ -164,11 +164,8 @@
                              this.submitNewContent();
                           }
                       });
-                      editor.on('init', (e) => {
-                          editor.setContent(this.content);
-                          this.$emit('input', this.content);
-                          debugger;
-                      });
+                      editor.setContent(this.content);
+                      this.$emit('input', this.content);                      
                       this.$emit('init_instance', editor);
                     }
                 });
