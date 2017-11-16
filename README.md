@@ -43,3 +43,8 @@ export default{
 | toolbar2 | String | '' | Toolbar 2 of tinymce |
 | plugins | Array | `['advlist autolink lists link image charmap print preview hr anchor pagebreak','searchreplace wordcount visualblocks visualchars code fullscreen','insertdatetime media nonbreaking save table contextmenu directionality','template']` | plugins of tinymce you need to load |
 | other_options | Array | {} | other tinymce options. you can also override our initial options |
+
+## Events
+| Event | Parameters | Description |
+|----------|--------------|-------------|
+| init_instance | editor, Object | The tinymce editor's 'init_instance_callback' event |

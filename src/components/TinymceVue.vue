@@ -1,8 +1,24 @@
 <template>
-  <div>
+  <div v-bind:disabled="disabled">
       <textarea :id="id">{{ content }}</textarea>
   </div>
 </template>
+
+<style scoped>
+    div[disabled] {
+        position: relative !important;
+    }
+    div[disabled]::after {
+        content:"";
+        display: block;
+        height: 100%;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, .6);
+    }
+</style>
 
 <script>
    // Import TinyMCE
@@ -59,6 +75,36 @@
     
     import 'tinymce/skins/lightgray/skin.min.css'
     import 'tinymce/skins/lightgray/content.min.css'
+    
+    // Object.assign polyfill
+    if (typeof Object.assign != 'function') {
+      // Must be writable: true, enumerable: false, configurable: true
+      Object.defineProperty(Object, "assign", {
+        value: function assign(target, varArgs) { // .length of function is 2
+          'use strict';
+          if (target == null) { // TypeError if undefined or null
+            throw new TypeError('Cannot convert undefined or null to object');
+          }
+
+          var to = Object(target);
+
+          for (var index = 1; index < arguments.length; index++) {
+            var nextSource = arguments[index];
+            if (nextSource != null) { // Skip over if undefined or null
+              for (var nextKey in nextSource) {
+                // Avoid bugs when hasOwnProperty is shadowed
+                if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                  to[nextKey] = nextSource[nextKey];
+                }
+              }
+            }
+          }
+          return to;
+        },
+        writable: true,
+        configurable: true
+      });
+    }
    
     export default {
         name: 'tinymce',
@@ -69,6 +115,7 @@
                 },
                 'htmlClass' : { default : '', type : String},
                 'value' : { default : '' },
+                'disabled': { default: false },
                 'plugins' : { default : function(){ 
                                     return [
                                         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
@@ -96,7 +143,9 @@
             this.init();  
         },
         beforeDestroy () {
-            this.editor.destroy();
+            if (this.editor) {
+                this.editor.destroy();
+            }
         },
         watch: {
             value : function (newValue){
@@ -110,37 +159,31 @@
         },
         methods: {
             init(){
-                let options = {
+                let options = Object.assign({
                     selector: '#' + this.id,
                     skin: false,
                     toolbar1: this.toolbar1,
                     toolbar2: this.toolbar2,
                     plugins: this.plugins,
+                  },
+                  this.other_options, 
+                  {
                     init_instance_callback : (editor) => {
-                        this.editor = editor;
-                        editor.on('KeyUp', (e) => {
-                           this.submitNewContent();
-                        });
-                        editor.on('Change', (e) => {
-                            if(this.editor.getContent() !== this.value){
-                               this.submitNewContent();
-                            }
-                        });
-                        editor.on('init', (e) => {
-                            editor.setContent(this.content);
-                            this.$emit('input', this.content);
-                        });
+                      this.editor = editor;
+                      editor.on('KeyUp', (e) => {
+                         this.submitNewContent();
+                      });
+                      editor.on('Change', (e) => {
+                          if(this.editor.getContent() !== this.value){
+                             this.submitNewContent();
+                          }
+                      });
+                      editor.setContent(this.content);
+                      this.$emit('input', this.content);                      
+                      this.$emit('init_instance', editor);
                     }
-                };
-                tinymce.init(this.concatAssciativeArrays(options, this.other_options));
-            },
-            concatAssciativeArrays(array1, array2){
-                if(array2.length === 0) return array1;
-                if(array1.length === 0) return array2;
-                let dest = [];
-                for ( let key in array1) dest[key] = array1[key];
-                for ( let key in array2) dest[key] = array2[key];
-                return dest;
+                });
+                tinymce.init(options);
             },
             submitNewContent(){
                 this.isTyping = true;
@@ -155,8 +198,3 @@
         }
     }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
