@@ -145,8 +145,6 @@
         beforeDestroy () {
             if (this.editor) {
                 this.editor.destroy();
-                // tinymce.execCommand("mceRemoveEditor", false, this.id);
-                // this.editor = null;
             }
         },
         watch: {
@@ -158,11 +156,6 @@
                         this.content = newValue;
                 }
             }
-            // disabled: function(newValue) {
-            //     if (this.editor) {
-            //         this.editor.getBody().setAttribute('contenteditable', !newValue);
-            //     }
-            // }
         },
         methods: {
             init(){
@@ -188,7 +181,6 @@
                       editor.setContent(this.content);
                       this.$emit('input', this.content);                      
                       this.$emit('init_instance', editor);
-                      // editor.getBody().setAttribute('contenteditable', !this.disabled);
                     }
                 });
                 tinymce.init(options);
