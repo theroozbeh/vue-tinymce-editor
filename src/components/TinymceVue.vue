@@ -1,8 +1,24 @@
 <template>
-  <div>
+  <div v-bind:disabled="disabled">
       <textarea :id="id">{{ content }}</textarea>
   </div>
 </template>
+
+<style scoped>
+    div[disabled] {
+        position: relative !important;
+    }
+    div[disabled]::after {
+        content:"";
+        display: block;
+        height: 100%;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, .6);
+    }
+</style>
 
 <script>
    // Import TinyMCE
@@ -74,7 +90,6 @@
 
           for (var index = 1; index < arguments.length; index++) {
             var nextSource = arguments[index];
-
             if (nextSource != null) { // Skip over if undefined or null
               for (var nextKey in nextSource) {
                 // Avoid bugs when hasOwnProperty is shadowed
@@ -100,6 +115,7 @@
                 },
                 'htmlClass' : { default : '', type : String},
                 'value' : { default : '' },
+                'disabled': { default: false },
                 'plugins' : { default : function(){ 
                                     return [
                                         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
@@ -128,9 +144,9 @@
         },
         beforeDestroy () {
             if (this.editor) {
-                // this.editor.destroy();
-                tinymce.execCommand("mceRemoveEditor", false, this.id);
-                this.editor = null;
+                this.editor.destroy();
+                // tinymce.execCommand("mceRemoveEditor", false, this.id);
+                // this.editor = null;
             }
         },
         watch: {
@@ -142,6 +158,11 @@
                         this.content = newValue;
                 }
             }
+            // disabled: function(newValue) {
+            //     if (this.editor) {
+            //         this.editor.getBody().setAttribute('contenteditable', !newValue);
+            //     }
+            // }
         },
         methods: {
             init(){
@@ -167,6 +188,7 @@
                       editor.setContent(this.content);
                       this.$emit('input', this.content);                      
                       this.$emit('init_instance', editor);
+                      // editor.getBody().setAttribute('contenteditable', !this.disabled);
                     }
                 });
                 tinymce.init(options);
