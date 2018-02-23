@@ -34,7 +34,6 @@ export default{
 }
 ```
 
-
 ## Properties
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
@@ -43,6 +42,15 @@ export default{
 | toolbar2 | String | '' | Toolbar 2 of tinymce |
 | plugins | Array | `['advlist autolink lists link image charmap print preview hr anchor pagebreak','searchreplace wordcount visualblocks visualchars code fullscreen','insertdatetime media nonbreaking save table contextmenu directionality','template']` | plugins of tinymce you need to load |
 | other_options | Array | {} | other tinymce options. you can also override our initial options |
+| readonly | Boolean | false | Enables or disables the Editor |
+
+## Events
+
+| Event | Parameter | Description |
+|----------|------|---------|
+| editorChange | Event | This event will be called when tinymce calls onchane |
+| editorInit | Editor | This event will be called after editor is initialized |
+
 
 ## Localization
 If you wish to use tinymce in other languages, please follow these steps:
@@ -66,5 +74,16 @@ export default{
 ```
 ```html
 <tinymce id="d1" v-model="data" :other_options="options"></tinymce>
+```
+
+## Direct access to tinymce editor
+You can access the tinymce itself by setting a ref to this component:
+```html
+<tinymce id="d1" v-model="data" ref="tm"></tinymce>
+```
+Then you can access the editor by calling:
+
+```js
+this.$refs.tm.editor
 ```
 

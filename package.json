@@ -1,6 +1,6 @@
 {
   "name": "vue-tinymce-editor",
-  "version": "1.4.5",
+  "version": "1.5.0",
   "description": "This a component provides easy use of tinymce for vue developers",
   "author": "Roozbeh Hajizadeh <hajizadeh.roozbeh@gmail.com>",
   "private": false,
