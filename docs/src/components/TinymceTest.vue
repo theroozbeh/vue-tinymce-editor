@@ -103,7 +103,7 @@ export default {
   },
   watch:{
       language(value){
-          window.location = '/?' + value
+          window.location = (window.location.hostname == 'http://localhost' ? window.location.hostname + ':8080/?' : 'https://dyonir.github.io/vue-tinymce-editor/?') + value
       }
   },
   mounted(){
