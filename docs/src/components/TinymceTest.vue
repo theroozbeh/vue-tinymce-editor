@@ -94,9 +94,8 @@ export default {
       initial : '<h2>This is a component for easy use of tinymce in vuejs.</h2> <p>&nbsp;</p> <p><span style="color: #339966;">I hope you enjoy using it.</span></p>',
       language: window.location.search.substring(1) ? window.location.search.substring(1) : 'en_US',
       options1:  { 'height': 300, 
-        language_url: window.location.search.substring(1) ?  
-            window.location.protocol + '//' +
-            (window.location.hostname == 'localhost' ? window.location.hostname + ':8080' : window.location.hostname)
+        language_url: window.location.search.substring(1) ? 
+            (window.location.hostname == 'http://localhost' ? window.location.hostname + ':8080' : 'https://dyonir.github.io/vue-tinymce-editor/')
             + '/static/langs/' + window.location.search.substring(1) + '.js'  : ''  },
     }
   },
