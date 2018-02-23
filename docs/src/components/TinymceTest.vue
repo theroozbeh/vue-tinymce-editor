@@ -78,6 +78,7 @@
                     v-on:editorInit="initCallBack"
                     v-on:editorChange="editorChange"
                     ref="tm"
+                    :toolbar2="toolbar2"
                     :other_options="options1"></tinymce>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -99,6 +100,7 @@ export default {
       dt1 : '<h2>This is a component for easy use of tinymce in vuejs.</h2> <p>&nbsp;</p> <p><span style="color: #339966;">I hope you enjoy using it.</span></p>',
       initial : '<h2>This is a component for easy use of tinymce in vuejs.</h2> <p>&nbsp;</p> <p><span style="color: #339966;">I hope you enjoy using it.</span></p>',
       language: window.location.search.substring(1) ? window.location.search.substring(1) : 'en_US',
+      toolbar2: 'codesample',
       options1:  { 'height': 300,
         language_url: window.location.search.substring(1) &&  window.location.search.substring(1) != 'en_US' ? 
             (window.location.hostname == 'http://localhost' ? window.location.hostname + ':8080' : 'https://dyonir.github.io/vue-tinymce-editor/')

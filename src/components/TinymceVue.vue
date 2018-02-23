@@ -20,7 +20,6 @@
     import 'tinymce/plugins/codesample';
     import 'tinymce/plugins/contextmenu';
     import 'tinymce/plugins/emoticons';
-    import 'tinymce/plugins/codesample';
     import 'tinymce/plugins/fullscreen';
     import 'tinymce/plugins/hr';
     import 'tinymce/plugins/imagetools';
@@ -73,7 +72,7 @@
                                         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                                         'searchreplace wordcount visualblocks visualchars code fullscreen',
                                         'insertdatetime media nonbreaking save table contextmenu directionality',
-                                        'template paste textcolor colorpicker textpattern imagetools toc help emoticons hr'
+                                        'template paste textcolor colorpicker textpattern imagetools toc help emoticons hr codesample'
                                     ];
                                 } , type: Array
                             },

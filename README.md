@@ -38,9 +38,9 @@ export default{
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | id | required, String | | id of component's textarea |
-| toolbar1 | String | `'formatselect \| bold italic  strikethrough  forecolor backcolor \| link \| alignleft aligncenter alignright alignjustify  \| numlist bullist outdent indent  \| removeformat'` | Toolbar 1 of tinymce |
+| toolbar1 | String | `'formatselect | bold italic  strikethrough  forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat'` | Toolbar 1 of tinymce |
 | toolbar2 | String | '' | Toolbar 2 of tinymce |
-| plugins | Array | `['advlist autolink lists link image charmap print preview hr anchor pagebreak','searchreplace wordcount visualblocks visualchars code fullscreen','insertdatetime media nonbreaking save table contextmenu directionality','template']` | plugins of tinymce you need to load |
+| plugins | Array | `['advlist autolink lists link image charmap print preview hr anchor pagebreak', 'searchreplace wordcount visualblocks visualchars code fullscreen', 'insertdatetime media nonbreaking save table contextmenu directionality','template paste textcolor colorpicker textpattern imagetools toc help emoticons hr codesample']` | plugins of tinymce you need to load |
 | other_options | Array | {} | other tinymce options. you can also override our initial options |
 | readonly | Boolean | false | Enables or disables the Editor |
 
