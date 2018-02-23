@@ -11,8 +11,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "tinymce": "^4.6.6",
-    "vue": "^2.4.2"
+    "tinymce": "^4.7.7",
+    "vue": "^2.5.13",
+    "vue-template-compiler": "^2.5.13"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

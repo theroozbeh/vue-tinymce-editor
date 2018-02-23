@@ -43,3 +43,28 @@ export default{
 | toolbar2 | String | '' | Toolbar 2 of tinymce |
 | plugins | Array | `['advlist autolink lists link image charmap print preview hr anchor pagebreak','searchreplace wordcount visualblocks visualchars code fullscreen','insertdatetime media nonbreaking save table contextmenu directionality','template']` | plugins of tinymce you need to load |
 | other_options | Array | {} | other tinymce options. you can also override our initial options |
+
+## Localization
+If you wish to use tinymce in other languages, please follow these steps:
+1. Download the language pack you wish to use from [here](https://www.tinymce.com/download/language-packages/).
+2. Unpack the language file into your desired path, which is accessible from outside and there is a URL pointing to it.
+3. Finally, set language_url in other_options to the URL pointing to the language file.
+
+For example:
+
+```js
+export default{
+    data(){
+        return {
+            data : '',
+            options: {
+                language_url: 'http://example.com/js/langs/fa_IR.js' //This url points to location of persian language file.
+            }
+        };
+    }
+}
+```
+```html
+<tinymce id="d1" v-model="data" :other_options="options"></tinymce>
+```
+
