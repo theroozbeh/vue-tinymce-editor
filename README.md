@@ -43,6 +43,7 @@ export default{
 | plugins | Array | `['advlist autolink lists link image charmap print preview hr anchor pagebreak', 'searchreplace wordcount visualblocks visualchars code fullscreen', 'insertdatetime media nonbreaking save table contextmenu directionality','template paste textcolor colorpicker textpattern imagetools toc help emoticons hr codesample']` | plugins of tinymce you need to load |
 | other_options | Array | {} | other tinymce options. you can also override our initial options |
 | readonly | Boolean | false | Enables or disables the Editor |
+| inline | Boolean | false | Enable inline mode |
 
 ## Events
 
