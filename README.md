@@ -2,6 +2,7 @@
 
 > This a component provides easy use of tinymce for vue developers
 
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/roozbehhz) [![Donate](https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg)](https://www.buymeacoffee.com/roozbehhz)
 ## Demo
 You can see a demo and an example in this page:
 [Demo & examples](https://dyonir.github.io/vue-tinymce-editor/)
@@ -87,3 +88,6 @@ Then you can access the editor by calling:
 this.$refs.tm.editor
 ```
 
+## Donate
+If you like this project and it was useful for you don't let it die. Help me continue it. Thank you.
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/roozbehhz) or you can [buy me a coffee](https://www.buymeacoffee.com/roozbehhz) [![Donate](https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg)](https://www.buymeacoffee.com/roozbehhz)
