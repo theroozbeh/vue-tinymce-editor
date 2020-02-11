@@ -1,6 +1,6 @@
 <template>
   <div>
-      <textarea :id="id">{{ content }}</textarea>
+      <textarea :id="id" :name="name">{{ content }}</textarea>
   </div>
 </template>
 
@@ -62,6 +62,10 @@
         name: 'tinymce',
         props: { 
                 id : {
+                    type : String,
+                    required : true
+                },
+                name : {
                     type : String,
                     required : true
                 },
