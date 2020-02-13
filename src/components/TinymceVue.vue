@@ -1,5 +1,6 @@
 <template>
   <div>
+      <div v-if="inline" :id="id">{{ content }}</div>
       <textarea :id="id" :name="name">{{ content }}</textarea>
   </div>
 </template>
@@ -55,12 +56,12 @@
     import 'tinymce/plugins/textcolor';
     import 'tinymce/plugins/toc';
     import 'tinymce/plugins/visualchars';
-    
+
     import 'tinymce/skins/lightgray/skin.min.css'
-   
+
     export default {
         name: 'tinymce',
-        props: { 
+        props: {
                 id : {
                     type : String,
                     required : true
@@ -71,19 +72,20 @@
                 },
                 htmlClass : { default : '', type : String},
                 value : { default : '' },
-                plugins : { default : function(){ 
+                plugins : { default : function(){
                                     return [
                                         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                                         'searchreplace wordcount visualblocks visualchars code fullscreen',
                                         'insertdatetime media nonbreaking save table contextmenu directionality',
-                                        'template paste textcolor colorpicker textpattern imagetools toc help emoticons hr codesample'
+                                        'template paste textcolor colorpicker textpattern imagetools toc help emoticons hr'
                                     ];
                                 } , type: Array
                             },
                 toolbar1: { default :'formatselect | bold italic  strikethrough  forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat', type: String},
                 toolbar2: { default : '', type: String },
                 other_options: { default : function() { return {}; }, type: Object},
-                readonly: { default: false, type: Boolean }
+                readonly: { default: false, type: Boolean },
+                inline: { default: false, type: Boolean }
         },
         data(){
             return {
@@ -92,11 +94,11 @@
                 cTinyMce : null,
                 checkerTimeout: null,
                 isTyping : false
-            }; 
+            };
         },
         mounted(){
             this.content = this.value;
-            this.init();  
+            this.init();
         },
         beforeDestroy () {
             this.editor.destroy();

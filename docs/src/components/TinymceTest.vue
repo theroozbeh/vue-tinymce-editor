@@ -102,10 +102,11 @@ export default {
       language: window.location.search.substring(1) ? window.location.search.substring(1) : 'en_US',
       toolbar2: 'codesample',
       options1:  { 'height': 300,
-        language_url: window.location.search.substring(1) &&  window.location.search.substring(1) != 'en_US' ? 
+        codesample_content_css: 'static/plugins/codesample/css/prism.css',
+        language_url: window.location.search.substring(1) &&  window.location.search.substring(1) != 'en_US' ?
             (window.location.hostname == 'http://localhost' ? window.location.hostname + ':8080' : 'https://dyonir.github.io/vue-tinymce-editor/')
             + '/static/langs/' + window.location.search.substring(1) + '.js'  : ''  },
-      
+
     }
   },
   computed:{
