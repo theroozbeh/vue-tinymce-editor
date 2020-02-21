@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <tinymce id="d1" v-model="data"></tinymce>
+    <tinymce id="d1" v-model="data" name="content"></tinymce>
     <button type="button" @click="clickHandler">Reset</button>
     <div>{{ data }}</div>
   </div>
@@ -21,7 +21,7 @@ export default {
       };
   },
   mounted(){
-     
+
   },
   methods: {
       clickHandler(){
